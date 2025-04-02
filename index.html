@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bento Grid Maker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Bento Grid Maker</h1>
+
+    <div class="controls global-controls">
+        <h2>Global Settings</h2>
+        <div>
+             <label for="gridGapInput">Box Spacing (Gap):</label>
+             <input type="number" id="gridGapInput" value="10" min="0"> px
+        </div>
+        <div>
+             <label for="outerPaddingInput">Outer Padding:</label>
+             <input type="number" id="outerPaddingInput" value="10" min="0"> px
+        </div>
+        <div>
+             <label for="boxRadiusInput">Corner Radius:</label>
+             <input type="number" id="boxRadiusInput" value="8" min="0"> px
+        </div>
+        <div>
+             <label for="containerBgColorInput">Container BG:</label>
+             <input type="color" id="containerBgColorInput" value="#e8edf0">
+        </div>
+
+        <div class="global-shadow-controls">
+            <h3>Global Box Shadow</h3>
+             <div>
+                 <label for="global-shadowHOffset">H-Offset:</label>
+                 <input type="number" id="global-shadowHOffset" value="0"> px
+             </div>
+             <div>
+                 <label for="global-shadowVOffset">V-Offset:</label>
+                 <input type="number" id="global-shadowVOffset" value="2"> px
+             </div>
+             <div>
+                 <label for="global-shadowBlur">Blur:</label>
+                 <input type="number" id="global-shadowBlur" value="5" min="0"> px
+             </div>
+             <div>
+                 <label for="global-shadowSpread">Spread:</label>
+                 <input type="number" id="global-shadowSpread" value="0"> px
+             </div>
+             <div>
+                 <label for="global-shadowColor">Color:</label>
+                 <input type="color" id="global-shadowColor" value="#000000">
+             </div>
+            <div>
+                 <label for="global-shadowOpacity">Opacity:</label>
+                 <input type="range" id="global-shadowOpacity" min="0" max="1" step="0.05" value="0.1" title="Shadow Opacity">
+            </div>
+             <button id="global-removeShadowBtn">Remove Shadow</button>
+        </div>
+
+        <div class="global-actions">
+             <button id="saveBtn">Save Design</button>
+             <button id="loadBtn">Load Design</button>
+             <button id="darkModeToggle">Toggle Theme</button> </div>
+
+        <p id="statusMessage"></p>
+    </div>
+
+
+    <div id="bentoGridContainer">
+        <div id="add-box-placeholder" class="bento-box">
+             + Add Box
+        </div>
+        </div>
+
+
+    <div id="panelOverlay" class="panel-overlay"></div> <div id="editPanel" class="edit-panel"> <button id="closePanelBtn" class="panel-close-btn" aria-label="Close editing options">&times;</button>
+        <h2>Edit Box Options</h2>
+
+        <div class="panel-control-section">
+            <label for="panel-boxColor">Box BG Color:</label>
+            <input type="color" id="panel-boxColor" value="#eeeeee">
+        </div>
+
+        <div class="panel-control-section">
+            <label for="panel-imageUrl">Image URL:</label>
+            <input type="url" id="panel-imageUrl" placeholder="Paste image URL here">
+            <button id="panel-applyImageBtn">Apply Image</button>
+            <button id="panel-removeImageBtn">Remove Image</button>
+        </div>
+
+        <div class="panel-control-section panel-resize-controls">
+           <h3>Resize</h3>
+           <button id="panel-widthMinusBtn" title="Decrease Width">- W</button>
+           <button id="panel-widthPlusBtn" title="Increase Width">+ W</button>
+           <button id="panel-heightMinusBtn" title="Decrease Height">- H</button>
+           <button id="panel-heightPlusBtn" title="Increase Height">+ H</button>
+       </div>
+
+       <div class="panel-control-section panel-text-controls">
+            <h3>Text</h3>
+            <label for="panel-fontSizeInput">Size:</label>
+            <input type="number" id="panel-fontSizeInput" value="16" min="8" step="1"> px
+
+            <label for="panel-textColorInput">Color:</label>
+            <input type="color" id="panel-textColorInput" value="#333333">
+
+            <div class="panel-text-buttons">
+                <button id="panel-textBoldBtn">B</button>
+                <button id="panel-textItalicBtn">I</button>
+                <button id="panel-textUnderlineBtn">U</button>
+                <button id="panel-textAlignLeftBtn">Left</button>
+                <button id="panel-textAlignCenterBtn">Center</button>
+                <button id="panel-textAlignRightBtn">Right</button>
+            </div>
+        </div>
+
+       <div class="panel-control-section panel-border-controls">
+           <h3>Border</h3>
+            <label for="panel-borderWidth">Width:</label>
+            <input type="number" id="panel-borderWidth" value="0" min="0"> px
+            <label for="panel-borderStyle">Style:</label>
+            <select id="panel-borderStyle">
+                <option value="none">None</option>
+                <option value="solid">Solid</option>
+                <option value="dashed">Dashed</option>
+                <option value="dotted">Dotted</option>
+            </select>
+            <label for="panel-borderColor">Color:</label>
+            <input type="color" id="panel-borderColor" value="#000000">
+       </div>
+
+       <button id="panel-deleteBoxBtn" class="panel-delete-btn">Delete This Box</button>
+
+    </div> <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+/* ======================================== */
+/* CSS Variables (Global Theme Settings)    */
+/* ======================================== */
+:root {
+    /* Spacing */
+    --grid-padding: 10px;         /* Controls grid gap (space BETWEEN boxes) */
+    --grid-outer-padding: 10px;   /* Controls padding AROUND grid container */
+
+    /* Box Appearance */
+    --box-border-radius: 8px;
+    --box-shadow-global: none; /* Global Shadow Variable */
+    --text-default-color: #333333;
+
+    /* Grid Appearance */
+    --grid-background-color: #e8edf0;
+
+    /* Fonts */
+    --font-primary: 'Inter', sans-serif;
+
+    /* Light Mode Colors (Default) */
+    --color-text-primary: #1a202c;
+    --color-text-secondary: #4a5568;
+    --color-text-placeholder: #a0aec0;
+    --color-background-body: #f7fafc;
+    --color-background-controls: #ffffff; /* Used for global controls & side panel */
+    --color-background-grid: #e8edf0; /* Uses var */
+    --box-default-bg: #ffffff;
+    --color-border-light: #e2e8f0;
+    --color-border-medium: #cbd5e0;
+    --color-border-focus: #a3bffa;
+    --color-focus-ring: rgba(59, 130, 246, 0.3);
+    --color-button-default-bg: #f1f5f9;
+    --color-button-default-hover-bg: #e2e8f0;
+    --color-button-default-border: #cbd5e0;
+    --color-button-primary-bg: #3b82f6;
+    --color-button-primary-hover-bg: #2563eb;
+    --color-button-success-bg: #10b981;
+    --color-button-success-hover-bg: #059669;
+    --color-button-danger-bg: #ef4444;
+    --color-button-danger-hover-bg: #dc2626;
+    --color-button-warning-bg: #f97316;
+    --color-button-warning-hover-bg: #ea580c;
+    --color-panel-overlay: rgba(0, 0, 0, 0.5); /* Overlay background */
+    --color-text-on-image-shadow: rgba(0, 0, 0, 0.4);
+}
+
+/* ======================================== */
+/* Dark Mode Color Overrides              */
+/* ======================================== */
+body.dark-mode {
+    --color-text-primary: #e2e8f0;
+    --color-text-secondary: #a0aec0;
+    --color-text-placeholder: #718096;
+    --color-background-body: #1a202c;
+    --color-background-controls: #2d3748;
+    /* --color-background-grid: #262f3d; */ /* Handled by --grid-background-color var */
+    --box-default-bg: #4a5568;
+    --color-border-light: #4a5568;
+    --color-border-medium: #718096;
+    --color-border-focus: #63b3ed;
+    --color-focus-ring: rgba(99, 179, 237, 0.4);
+    --color-button-default-bg: #4a5568;
+    --color-button-default-hover-bg: #718096;
+    --color-button-default-border: #718096;
+    --color-panel-overlay: rgba(0, 0, 0, 0.7);
+    --color-text-on-image-shadow: rgba(255, 255, 255, 0.3); /* Lighter shadow for dark mode */
+    --text-default-color: #e2e8f0; /* Default text color in dark mode */
+}
+
+/* ======================================== */
+/* Base Styles                            */
+/* ======================================== */
+body {
+    font-family: var(--font-primary); margin: 20px; background-color: var(--color-background-body); color: var(--color-text-primary); line-height: 1.5; transition: background-color 0.3s ease, color 0.3s ease;
+}
+/* ======================================== */
+/* Typography                           */
+/* ======================================== */
+h1 { font-family: var(--font-primary); font-weight: 700; font-size: 2.5em; color: #2c3e50; text-align: center; margin-bottom: 30px; letter-spacing: -0.5px; padding-bottom: 10px; transition: color 0.3s ease; }
+body.dark-mode h1 { color: #cbd5e0; }
+h2 { margin-top: 0; margin-bottom: 20px; font-size: 1.5em; color: #34495e; transition: color 0.3s ease; } /* Panel H2 */
+h3 { margin-bottom: 12px; font-size: 1.0em; font-weight: 600; color: #34495e; border-bottom: 1px solid var(--color-border-light); padding-bottom: 5px; transition: color 0.3s ease, border-color 0.3s ease; } /* Section H3 */
+body.dark-mode h2, body.dark-mode h3 { color: #a0aec0; }
+
+/* ======================================== */
+/* Global Controls Panel Styling          */
+/* ======================================== */
+.controls.global-controls { background-color: var(--color-background-controls); padding: 20px; margin-bottom: 25px; border-radius: var(--box-border-radius); box-shadow: 0 3px 8px rgba(0,0,0,0.08); display: flex; flex-wrap: wrap; gap: 10px 15px; align-items: center; transition: background-color 0.3s ease; }
+.global-controls h2 { width: 100%; margin-bottom: 10px; }
+.global-controls > div:not(.global-shadow-controls):not(.global-actions) { display: inline-flex; align-items: center; }
+.global-controls label { margin-bottom: 0; margin-right: 5px; font-size: 0.9em; color: var(--color-text-secondary); min-width: unset; vertical-align: middle; transition: color 0.3s ease; }
+.global-controls input[type="number"], .global-controls input[type="color"], .global-controls button { margin-bottom: 0; }
+.global-controls input[type="number"] { width: 60px; text-align: right; margin-right: 5px;}
+.global-controls input[type="number"] + span { font-size: 0.9em; color: var(--color-text-secondary); margin-right: 10px; }
+.global-controls input[type="color"] { padding: 2px; height: 30px; width: 40px; cursor: pointer; border-radius: 6px; border: 1px solid var(--color-border-medium); transition: border-color 0.3s ease; }
+.global-actions { margin-left: auto; display: flex; gap: 10px; align-items: center; }
+
+/* Global Shadow Controls Section */
+.global-shadow-controls { display: flex; flex-wrap: wrap; gap: 8px 15px; align-items: center; width: 100%; padding-top: 15px; margin-top: 10px; border-top: 1px solid var(--color-border-light); transition: border-color 0.3s ease; }
+.global-shadow-controls h3 { width: 100%; margin-bottom: 8px; font-size: 1.0em; border-bottom: none; padding-bottom: 0; }
+.global-shadow-controls > div { display: flex; align-items: center; }
+.global-shadow-controls label { min-width: 60px; margin-right: 5px; }
+.global-shadow-controls input[type="number"] { width: 55px; }
+.global-shadow-controls input[type="color"] { width: 40px; height: 30px; }
+.global-shadow-controls input[type="range"] { width: 80px; }
+.global-shadow-controls button { margin-left: 10px;}
+
+/* Dark mode specific input styles (General) */
+body.dark-mode input[type="number"], body.dark-mode input[type="url"], body.dark-mode select, body.dark-mode input[type="text"] { background-color: #2d3748; color: var(--color-text-primary); border-color: var(--color-border-medium); }
+body.dark-mode input[type="color"] { border-color: var(--color-border-medium); }
+body.dark-mode button { background-color: var(--color-button-default-bg); color: var(--color-text-primary); border-color: var(--color-button-default-border); }
+body.dark-mode button:hover { background-color: var(--color-button-default-hover-bg); border-color: #aab8c2; }
+body.dark-mode #saveBtn, body.dark-mode #loadBtn { background-color: var(--color-button-primary-bg); color: white; border-color: var(--color-button-primary-hover-bg);} body.dark-mode #saveBtn:hover, body.dark-mode #loadBtn:hover { background-color: var(--color-button-primary-hover-bg);}
+
+/* General Input/Button/Select Styles (used in global and panel) */
+input[type="number"], input[type="url"], select, input[type="color"], input[type="text"] { margin-right: 10px; margin-bottom: 8px; vertical-align: middle; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--color-border-medium); font-size: 0.9em; background-color: #f8fafc; transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease; }
+input[type="number"]:focus, input[type="url"]:focus, select:focus, input[type="color"]:focus, input[type="text"]:focus { outline: none; border-color: var(--color-border-focus); box-shadow: 0 0 0 2px var(--color-focus-ring); }
+input[type="range"] { vertical-align: middle; width: 100px; height: 5px; padding: 0; cursor: pointer; }
+button { padding: 8px 14px; border-radius: 6px; border: 1px solid var(--color-button-default-border); font-size: 0.9em; background-color: var(--color-button-default-bg); color: var(--color-text-secondary); cursor: pointer; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; margin-right: 8px; margin-bottom: 8px; vertical-align: middle; }
+button:hover { background-color: var(--color-button-default-hover-bg); border-color: #aab8c2; }
+
+
+/* ======================================== */
+/* Grid Container                         */
+/* ======================================== */
+#bentoGridContainer { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); grid-auto-rows: minmax(120px, auto); gap: var(--grid-padding); padding: var(--grid-outer-padding); min-height: 300px; background-color: var(--grid-background-color); border-radius: var(--box-border-radius); position: relative; border: 1px solid #d1d8dd; transition: background-color 0.3s ease, border-color 0.3s ease; }
+body.dark-mode #bentoGridContainer { border-color: var(--color-border-light); }
+
+/* ======================================== */
+/* Bento Box Styling                      */
+/* ======================================== */
+.bento-box { border-radius: var(--box-border-radius); position: relative; overflow: hidden; transition: background-color 0.3s ease, box-shadow 0.3s ease, border 0.3s ease; cursor: pointer; display: flex; flex-direction: column; background-color: var(--box-default-bg); min-height: 120px; grid-column-end: span 1; grid-row-end: span 1; box-shadow: var(--box-shadow-global, none); } /* Uses global shadow */
+.bento-box:not(#add-box-placeholder):active { cursor: grabbing; } /* Feedback for dragging */
+
+/* Content Wrapper */
+.bento-box .content-wrapper { padding: 15px; position: relative; z-index: 2; flex-grow: 1; background-color: transparent; transition: color 0.3s ease; text-align: left; overflow-wrap: break-word; word-wrap: break-word; min-height: 1.5em; line-height: 1.5; color: var(--text-default-color); }
+/* Placeholder text */
+[contenteditable="true"]:empty::before { content: 'Click to edit...'; color: var(--color-text-placeholder); font-style: italic; cursor: text; pointer-events: none; display: inline-block; transition: color 0.3s ease; }
+/* Image */
+.bento-box img { display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+/* Content Editable */
+[contenteditable="true"] { outline: none; cursor: text; }
+/* Optional: Add visual cue when text area is focused */
+.bento-box .content-wrapper.editing-text { /* Class added by JS on focus */
+  /* Add styles here, e.g., slight inset shadow */
+  /* box-shadow: inset 0 0 0 2px rgba(0, 123, 255, 0.2); */
+}
+
+
+/* ======================================== */
+/* Add Box Placeholder Specific Styling   */
+/* ======================================== */
+#add-box-placeholder { background-color: rgba(150, 160, 170, 0.3); border: 2px dashed #aab8c2; color: #657786; display: flex; justify-content: center; align-items: center; font-size: 1.1em; font-weight: 600; cursor: pointer; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; min-height: 120px; box-shadow: none !important; border-radius: var(--box-border-radius); grid-column-end: span 1 !important; grid-row-end: span 1 !important; order: 9999; }
+#add-box-placeholder:hover { background-color: rgba(170, 180, 190, 0.4); border-color: #8a9aa6; color: #34495e; }
+body.dark-mode #add-box-placeholder { background-color: rgba(45, 55, 72, 0.5); border-color: var(--color-border-medium); color: var(--color-text-secondary); }
+body.dark-mode #add-box-placeholder:hover { background-color: rgba(74, 85, 104, 0.6); border-color: var(--color-text-secondary); color: var(--color-text-primary); }
+
+/* ======================================== */
+/* Status Message                         */
+/* ======================================== */
+#statusMessage { font-size: 0.9em; min-height: 1.2em; margin-top: 10px; font-weight: 500; transition: color 0.3s ease;}
+
+/* ======================================== */
+/* SortableJS Library Styling             */
+/* ======================================== */
+.sortable-ghost { opacity: 0.4 !important; background-color: #c0e0ff !important; border: 2px dashed #007bff !important; box-shadow: none !important; border-radius: var(--box-border-radius); }
+.sortable-drag { opacity: 0.9 !important; cursor: grabbing !important; }
+
+/* ======================================== */
+/* Edit Side Panel Styling                */
+/* ======================================== */
+#panelOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; backdrop-filter: blur(0px); opacity: 0; transition: opacity 0.3s ease-in-out; pointer-events: none; /* Hidden by default */ }
+#panelOverlay.is-open { display: block; opacity: 1; pointer-events: auto; /* Clickable when open */ }
+
+#editPanel { display: block; position: fixed; top: 0; right: 0; width: 90%; max-width: 350px; height: 100%; background-color: var(--color-background-controls); color: var(--color-text-primary); padding: 25px 30px; box-shadow: -3px 0 15px rgba(0,0,0,0.15); z-index: 100; overflow-y: auto; transform: translateX(100%); transition: transform 0.3s ease-in-out, background-color 0.3s ease, color 0.3s ease; }
+#editPanel.is-open { transform: translateX(0); } /* Slides in */
+
+#closePanelBtn { position: absolute; top: 10px; right: 15px; font-size: 1.8em; font-weight: bold; line-height: 1; color: #aaa; background: none; border: none; cursor: pointer; padding: 5px; z-index: 101; }
+#closePanelBtn:hover { color: var(--color-text-primary); }
+body.dark-mode #closePanelBtn { color: #718096; }
+body.dark-mode #closePanelBtn:hover { color: var(--color-text-primary); }
+
+/* Controls inside the panel */
+#editPanel .panel-control-section { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--color-border-light); transition: border-color 0.3s ease;}
+#editPanel .panel-control-section:last-of-type { border-bottom: none; padding-bottom: 10px; }
+#editPanel h2 { font-size: 1.4em; margin-bottom: 25px;}
+#editPanel h3 { font-size: 0.95em; }
+#editPanel label { min-width: 70px; color: var(--color-text-secondary); /* Inherit general styles */ }
+/* Inherit general input/select/button styles */
+
+/* Specific panel control adjustments */
+#editPanel .panel-text-controls label { min-width: 40px; }
+#editPanel .panel-text-controls .panel-text-buttons { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px;}
+#editPanel .panel-text-controls .panel-text-buttons button { font-weight: bold; min-width: 40px; padding: 6px 10px;}
+#editPanel #panel-textItalicBtn { font-style: italic; }
+#editPanel #panel-textUnderlineBtn { text-decoration: underline; }
+#editPanel .panel-border-controls label { min-width: 50px; }
+#editPanel #panel-borderStyle { width: 90px; }
+#editPanel #panel-deleteBoxBtn { background-color: var(--color-button-danger-bg); color: white; border-color: var(--color-button-danger-hover-bg); display: block; width: 100%; margin-top: 20px;}
+#editPanel #panel-deleteBoxBtn:hover { background-color: var(--color-button-danger-hover-bg);}
+
+/* Dark mode inputs inside panel */
+body.dark-mode #editPanel input[type="number"], body.dark-mode #editPanel input[type="url"], body.dark-mode #editPanel select, body.dark-mode #editPanel input[type="text"] { background-color: #1a202c; color: var(--color-text-primary); border-color: var(--color-border-medium); }
+body.dark-mode #editPanel input[type="color"] { border-color: var(--color-border-medium); }
+
+/* ======================================== */
+/* Dark Mode Toggle Styling (Basic Button)  */
+/* ======================================== */
+#darkModeToggle { min-width: 110px; text-align: center; }
